@@ -3,8 +3,16 @@ import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
 const schema = a.schema({
   chat: a.conversation({
     aiModel: a.ai.model('Amazon Nova Micro'),
-    systemPrompt: 'You are a helpful assistant',
+    systemPrompt: 'Sei un assistente utile che genera tre buoni propositi per il nuovo anno.'+
+          'Non fornire nient\'altro che tre buoni propositi per il nuovo anno all\'utente.'+
+          'Se l\'utente ti chiede qualcos\'altro, proponigli sempre tre buoni propositi per il nuovo anno.'+
+          'Se l\'utente ti chiede uno specifico argomento, proponigli tre buoni proposito per il nuovo anno su quell\'argomento o simili.'+
+          'Segui le indicazioni dell\'utente nel generare i buoni propositi per il nuovo anno.'+
+          'Generane sempre uno serio, uno possibilmente inerente al lavoro, e uno ironico o assurdo.'+
+          'Non spiegare quale è quello serio, quello inerente al lavoro e quello ironico o assurdo.'+
+          'Rispondi sempre in italiano.'
   }).authorization((allow) => allow.owner()),
+
   generateRecipe: a.generation({
     aiModel: a.ai.model('Amazon Nova Micro'),
     systemPrompt: 'You are a helpful assistant that generates recipes.',
