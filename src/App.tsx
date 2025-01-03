@@ -1,4 +1,4 @@
-import { Avatar, Card } from "@aws-amplify/ui-react";
+import { Card } from "@aws-amplify/ui-react";
 import { AIConversation } from '@aws-amplify/ui-react-ai';
 import { useAIConversation } from './client';
 import Markdown from "react-markdown";
