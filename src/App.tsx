@@ -48,11 +48,9 @@ export default function App() {
                 }}
                 avatars={{
                     user: {
-                        avatar: <Avatar src="/images/user.jpg" />,
                         username: 'Tu', // Set the user's email as username
                     },
                     ai: {
-                        avatar: <Avatar src="/images/ai.jpg" />,
                         username: "Eleva AI"
                     }
                 }}
