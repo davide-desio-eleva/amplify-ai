@@ -31,9 +31,9 @@ const components = {
         const {tokens} = useTheme();
 
         return (
-            <View textAlign="center" padding={tokens.space.large}>
+            <View className="footer" textAlign="center" padding={tokens.space.large}>
                 &copy; All Rights Reserved.
-                Made with ❤️ by <a href="https://eleva.it">Eleva</a>
+                Made with ❤️ by <a href="https://eleva.it" target="_blank">Eleva</a>
             </View>
         );
     },

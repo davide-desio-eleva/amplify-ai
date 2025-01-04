@@ -1,4 +1,4 @@
-import { Card } from "@aws-amplify/ui-react";
+import {Card, View} from "@aws-amplify/ui-react";
 import { AIConversation } from '@aws-amplify/ui-react-ai';
 import { useAIConversation } from './client';
 import Markdown from "react-markdown";
@@ -16,7 +16,23 @@ export default function App() {
     // 'chat' is based on the key for the conversation route in your schema.
 
     return (
+        <>
+            <View style={{position:"absolute",top:"25px",right:"25px"}}>
+                <a href="https://eleva.it" target="_blank">
+                    <img style={{background:'#d64942',height:"50px",padding:"5px",borderRadius:"50%"}}
+                         alt="Amplify logo"
+                         src="https://eleva.it/assets/imgs/eleva-logo-white.svg"
+                    />
+                </a>
+            </View>
             <AIConversation
+                displayText={{
+                    getMessageTimestampText: (date) => new Intl.DateTimeFormat('it-IT', {
+                        dateStyle: "short",
+                        timeStyle: 'short',
+                        hour12: false,
+                    }).format(date)
+                }}
                 welcomeMessage={
                     <Card variation="outlined">
                         <div>Ciao! Sono il tuo assistente virtuale Eleva per i buoni propositi del 2025.</div>
@@ -58,5 +74,10 @@ export default function App() {
                 isLoading={isLoading}
                 handleSendMessage={handleSendMessage}
             />
+            <View className="footer" textAlign="center">
+                &copy; All Rights Reserved.
+                Made with ❤️ by <a href="https://eleva.it" target="_blank">Eleva</a>
+            </View>
+        </>
     );
 }

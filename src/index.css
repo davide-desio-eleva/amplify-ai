@@ -84,6 +84,14 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.footer{
+  color: white !important;
+  text-align: center;
+}
+.footer a{
+  color: white !important;
+}
+
 .amplify-textarea{
   background:white !important;
 }
@@ -92,4 +100,21 @@ button:focus-visible {
   background:white !important;
   padding:10px !important;
   border-radius:10px !important;
+}
+
+.amplify-card{
+  background:white !important;
+  border-radius:10px !important;
+}
+
+[data-amplify-authenticator] {
+  --amplify-components-authenticator-router-box-shadow: 0 0 16px #d64942;
+  --amplify-components-authenticator-router-border-width: 0;
+  --amplify-components-authenticator-form-padding: var(--amplify-space-medium) var(--amplify-space-xl) var(--amplify-space-xl);
+  --amplify-components-button-primary-background-color: #d64942;
+  --amplify-components-fieldcontrol-focus-box-shadow: 0 0 0 2px #d64942;
+  --amplify-components-tabs-item-active-border-color: #d64942;
+  --amplify-components-tabs-item-color: #d64942;
+  --amplify-components-tabs-item-active-color: #d64942;
+  --amplify-components-button-link-color: #d64942;
 }
