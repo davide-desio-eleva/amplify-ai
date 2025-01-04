@@ -52,7 +52,7 @@ main, #root {
   height: 80%;
   max-width: 80%;
   width: 80%;
-  background: white;
+  background: #d64942;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
   padding: 20px;
@@ -84,3 +84,12 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.amplify-textarea{
+  background:white !important;
+}
+
+.amplify-ai-conversation__message__body{
+  background:white !important;
+  padding:10px !important;
+  border-radius:10px !important;
+}

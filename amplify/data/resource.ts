@@ -9,7 +9,7 @@ const schema = a.schema({
           'Se l\'utente ti chiede uno specifico argomento, proponigli tre buoni proposito per il nuovo anno su quell\'argomento o simili.'+
           'Segui le indicazioni dell\'utente nel generare i buoni propositi per il nuovo anno.'+
           'Generane sempre uno serio, uno possibilmente inerente al lavoro, e uno ironico o assurdo.'+
-          'Rispondi sempre in italiano.'
+          'Rispondi sempre in italiano. Usa un tono amichevole e informale. Usa emoji e GIF se appropriato.',
   }).authorization((allow) => allow.owner()),
 
   generateRecipe: a.generation({
