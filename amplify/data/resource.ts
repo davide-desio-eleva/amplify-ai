@@ -3,30 +3,15 @@ import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
 const schema = a.schema({
   chat: a.conversation({
     aiModel: a.ai.model('Amazon Nova Micro'),
-    systemPrompt: 'Sei un assistente utile che genera tre buoni propositi per il nuovo anno.'+
-          'Non fornire nient\'altro che tre buoni propositi per il nuovo anno all\'utente.'+
-          'Se l\'utente ti chiede qualcos\'altro, proponigli sempre tre buoni propositi per il nuovo anno.'+
-          'Se l\'utente ti chiede uno specifico argomento, proponigli tre buoni proposito per il nuovo anno su quell\'argomento o simili.'+
-          'Segui le indicazioni dell\'utente nel generare i buoni propositi per il nuovo anno.'+
+    systemPrompt: 'Sei un assistente che genera il testo in prima persona di un post di linkedin con dentro tre buoni propositi per il 2025, come se fosse scritto dall\'utente stesso.'+
+          'Non fornire nient\'altro che il testo del post con tre buoni propositi per il nuovo anno all\'utente, in modo che possa copiarlo e pubblicarlo. Non aggiungere altre informazioni come intestazioni o prologhi, ma fornisci solo il testo del post'+
+          'Se l\'utente ti chiede qualcos\'altro, proponigli sempre il testo del post con tre buoni propositi per il nuovo anno.'+
+          'Se l\'utente ti chiede uno specifico argomento, proponigli il testo del post con tre buoni proposito per il nuovo anno su quell\'argomento o simili.'+
+          'Segui le indicazioni dell\'argomento fornito dall\'utente nel generare i buoni propositi per il nuovo anno.'+
           'Generane sempre uno serio, uno possibilmente inerente al lavoro, e uno ironico o assurdo.'+
-          'Rispondi sempre in italiano. Usa un tono amichevole e informale. Usa emoji e GIF se appropriato.',
+          'Rispondi sempre in italiano. Usa un tono amichevole e informale. Usa emoji e GIF se appropriato.'+
+          'Usa un tone of voice adatto a linkedin con il livello di cringe assegnato.',
   }).authorization((allow) => allow.owner()),
-
-  generateRecipe: a.generation({
-    aiModel: a.ai.model('Amazon Nova Micro'),
-    systemPrompt: 'You are a helpful assistant that generates recipes.',
-  })
-      .arguments({
-        description: a.string(),
-      })
-      .returns(
-          a.customType({
-            name: a.string(),
-            ingredients: a.string().array(),
-            instructions: a.string(),
-          })
-      )
-      .authorization((allow) => allow.authenticated()),
 });
 
 export type Schema = ClientSchema<typeof schema>;
@@ -37,32 +22,3 @@ export const data = defineData({
     defaultAuthorizationMode: 'userPool',
   },
 });
-
-/*== STEP 2 ===============================================================
-Go to your frontend source code. From your client-side code, generate a
-Data client to make CRUDL requests to your table. (THIS SNIPPET WILL ONLY
-WORK IN THE FRONTEND CODE FILE.)
-
-Using JavaScript or Next.js React Server Components, Middleware, Server
-Actions or Pages Router? Review how to generate Data clients for those use
-cases: https://docs.amplify.aws/gen2/build-a-backend/data/connect-to-API/
-=========================================================================*/
-
-/*
-"use client"
-import { generateClient } from "aws-amplify/data";
-import type { Schema } from "@/amplify/data/resource";
-
-const client = generateClient<Schema>() // use this Data client for CRUDL requests
-*/
-
-/*== STEP 3 ===============================================================
-Fetch records from the database and use them in your frontend component.
-(THIS SNIPPET WILL ONLY WORK IN THE FRONTEND CODE FILE.)
-=========================================================================*/
-
-/* For example, in a React component, you can use this snippet in your
-  function's RETURN statement */
-// const { data: todos } = await client.models.Todo.list()
-
-// return <ul>{todos.map(todo => <li key={todo.id}>{todo.content}</li>)}</ul>
