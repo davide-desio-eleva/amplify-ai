@@ -296,5 +296,5 @@ button:focus-visible {
 }
 
 [data-amplify-container]{
-  width: 100%;
+  width: 100% !important;
 }
