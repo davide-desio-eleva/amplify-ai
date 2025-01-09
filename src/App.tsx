@@ -1,32 +1,32 @@
-import {Card} from "@aws-amplify/ui-react";
-import {useState} from "react";
-import {client} from "./client";
+import React, { useState } from "react";
+import { Card } from "@aws-amplify/ui-react";
+import { client } from "./client";
 import Loader from "./components/Loader";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Post from "./components/Post";
-import {TextAreaField} from "@aws-amplify/ui-react";
+import { TextAreaField } from "@aws-amplify/ui-react";
 
 export default function App() {
-
     const [controlsVisible, setControlsVisible] = useState(true);
-    const [postVisible, setPostVisible] = useState(false);
     const [loading, setLoading] = useState(false);
     const [chatLog, setChatLog] = useState('');
     const [cringeLevel, setCringeLevel] = useState(50);
     const [argument, setArgument] = useState('');
+    const [postOpacity, setPostOpacity] = useState(0); // Opacity state
 
-    const handleRangeChange = (event:any) => {
-        setCringeLevel(event.target.value);
+    const handleRangeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = Number(event.target.value);
+        setCringeLevel(value);
     };
 
-    const handleArgumentChange = (event:any) => {
+    const handleArgumentChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setArgument(event.target.value);
     };
 
     const handleClick = async () => {
         console.log("Click");
-        setControlsVisible(false)
+        setControlsVisible(false);
         setLoading(true);
 
         try {
@@ -37,18 +37,29 @@ export default function App() {
                 // 2. Subscribe to assistant responses
                 chat.onStreamEvent({
                     next: (event) => {
-                        // handle assistant response stream events
-                        if(event.text){
-                            console.log("Acquiring text: "+event.text);
-                            setChatLog(prev => `${prev}${event.text}`);
+                        // Handle assistant response stream events
+                        if (event.text) {
+                            console.log("Acquiring text: " + event.text);
+                            setChatLog((prev) => `${prev}${event.text}`);
+
+                            // Animate opacity of the Post component
+                            let opacity = 0;
+                            const interval = setInterval(() => {
+                                opacity += 0.1;
+                                if (opacity >= 1) {
+                                    clearInterval(interval);
+                                    opacity = 1;
+                                }
+                                setPostOpacity(opacity);
+                            }, 50); // Update every 50ms
+
                         }
-                        if(event.contentBlockDoneAtIndex){
-                            setPostVisible(true);
+                        if (event.contentBlockDoneAtIndex) {
                             setLoading(false);
                         }
                     },
                     error: (error) => {
-                        // handle errors
+                        // Handle errors
                         console.error(error);
                         setControlsVisible(true);
                         setLoading(false);
@@ -56,7 +67,9 @@ export default function App() {
                 });
 
                 // 3. Send a message to the conversation
-                await chat.sendMessage("Utilizza l'argomento "+argument+" ed un livello di cringe pari a "+cringeLevel +" su 100");
+                await chat.sendMessage(
+                    `Utilizza l'argomento ${argument} ed un livello di cringe pari a ${cringeLevel} su 100`
+                );
             }
         } catch (error) {
             console.error("An error occurred:", error);
@@ -65,19 +78,22 @@ export default function App() {
 
     return (
         <>
-            <Header/>
+            <Header />
 
-            { loading && <Card><Loader cringeLevel={cringeLevel} /></Card> }
+            {loading && (
+                <Card>
+                    <Loader cringeLevel={cringeLevel} />
+                </Card>
+            )}
 
-            { controlsVisible && (
+            {controlsVisible && (
                 <div id="controls">
                     <Card variation="outlined">
                         <div>
                             Ciao! Sono il tuo assistente virtuale Eleva per i buoni propositi del 2025:
-                            forniscimi un argomento e io farò il resto con un po' di magia.
-                            Ad esempio:
+                            forniscimi un argomento e io farò il resto con un po' di magia. Ad esempio:
                         </div>
-                        <ul style={{fontSize:"11px"}}>
+                        <ul style={{ fontSize: "11px" }}>
                             <li>non fare più di 3 call al giorno</li>
                             <li>non far salire il cane sul divano</li>
                             <li>scrivere un libro</li>
@@ -89,9 +105,12 @@ export default function App() {
                             <li>eliminare whatsapp web dalle 9 alle 18</li>
                             <li>fare sport con i colleghi il giorno dopo gli offsite</li>
                         </ul>
-                        <div>Scrivi il tuo argomento qui sotto:</div>
                         <div className="argument-container">
-                            <TextAreaField value={argument} onChange={handleArgumentChange}></TextAreaField>
+                            <TextAreaField
+                                value={argument}
+                                onChange={handleArgumentChange}
+                                label="Scrivi il tuo argomento qui sotto:"
+                            />
                         </div>
                     </Card>
 
@@ -110,15 +129,19 @@ export default function App() {
                             <span>Super-Cringe</span>
                         </div>
                     </div>
-                    <button id="generate" onClick={handleClick}>Genera i tuoi nuovi propositi</button>
+                    <button id="generate" onClick={handleClick}>
+                        Genera i tuoi nuovi propositi
+                    </button>
                 </div>
             )}
 
-            { postVisible && (
-                <Post chatLog={chatLog}/>
-            )}
+            { postOpacity>0 &&
+                <div style={{ opacity: postOpacity, transition: "opacity 0.5s ease-in-out" }}>
+                    <Post chatLog={chatLog} />
+                </div>
+            }
 
-            <Footer/>
+            <Footer />
         </>
     );
 }
