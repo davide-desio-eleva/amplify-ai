@@ -283,6 +283,7 @@ button:focus-visible {
 }
 
 [data-amplify-authenticator] {
+  width: 100%;
   --amplify-components-authenticator-router-box-shadow: 0 0 16px #d64942;
   --amplify-components-authenticator-router-border-width: 0;
   --amplify-components-authenticator-form-padding: var(--amplify-space-medium) var(--amplify-space-xl) var(--amplify-space-xl);
@@ -292,4 +293,8 @@ button:focus-visible {
   --amplify-components-tabs-item-color: #d64942;
   --amplify-components-tabs-item-active-color: #d64942;
   --amplify-components-button-link-color: #d64942;
+}
+
+[data-amplify-container]{
+  width: 100%;
 }
