@@ -123,6 +123,8 @@ button:focus-visible {
   background: #d64942;
   border-radius: 50%;
   cursor: pointer;
+  position:relative;
+  top:-5px;
 }
 #cringeRange::-moz-range-track {
   background: #d64942;

@@ -24,6 +24,12 @@ export default function App() {
         setArgument(event.target.value);
     };
 
+    const handleBack = async () => {
+        setPostOpacity(0);
+        setControlsVisible(true);
+        setLoading(false);
+    }
+
     const handleClick = async () => {
         console.log("Click");
         setControlsVisible(false);
@@ -136,9 +142,14 @@ export default function App() {
             )}
 
             { postOpacity>0 &&
-                <div style={{ opacity: postOpacity, transition: "opacity 0.5s ease-in-out" }}>
-                    <Post chatLog={chatLog} />
-                </div>
+                <>
+                    <div style={{ opacity: postOpacity, transition: "opacity 0.5s ease-in-out" }}>
+                        <Post chatLog={chatLog} />
+                    </div>
+                    <button id="back" onClick={handleBack}>
+                        Genera di nuovo
+                    </button>
+                </>
             }
 
             <Footer />
