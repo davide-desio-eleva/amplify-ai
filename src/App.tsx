@@ -150,8 +150,10 @@ export default function App() {
                             <span>Super-Cringe</span>
                         </div>
                     </div>
-                    <button id="generate" onClick={handleClick}>
-                        Genera i tuoi nuovi propositi
+                    <button className="pushable" id="generate" onClick={handleClick}>
+                      <span className="front">
+                        Genera i tuoi nuovi propositi 🪄
+                      </span>
                     </button>
                 </div>
             )}
@@ -161,8 +163,10 @@ export default function App() {
                     <div style={{ opacity: postOpacity, transition: "opacity 0.5s ease-in-out" }}>
                         <Post chatLog={chatLog} userName={userName} userTitle={userTitle} />
                     </div>
-                    <button id="back" onClick={handleBack}>
-                        Genera di nuovo
+                    <button className="pushable" id="back" onClick={handleBack}>
+                      <span className="front">
+                        Genera di nuovo 🪄
+                      </span>
                     </button>
                 </>
             }
