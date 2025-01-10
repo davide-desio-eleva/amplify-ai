@@ -398,8 +398,14 @@ div.bullets button:nth-child(9) {
   100% { transform: rotate(360deg); }
 }
 
+.amplify-input{
+  background:white !important;
+  font-family: "Segoe UI', Tahoma, Geneva, Verdana, sans-serif", serif !important;
+}
+
 .amplify-textarea{
   background:white !important;
+  font-family: "Segoe UI', Tahoma, Geneva, Verdana, sans-serif", serif !important;
 }
 
 .amplify-ai-conversation__message__body{
