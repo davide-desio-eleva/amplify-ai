@@ -28,6 +28,8 @@ const Post = ({
         }
     };
 
+    const prompt = "Una bella immagine per LinkedIn";
+
     return (
         <div id="post-container" style={{ position: "relative" }}>
             {notification && (
@@ -60,17 +62,7 @@ const Post = ({
                 </button>
                 <div className="post-user-info">
                     <div className="post-user-icon">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="50"
-                            height="50"
-                            viewBox="0 0 24 24"
-                            fill="#ccc"
-                            aria-hidden="true"
-                        >
-                            <circle cx="12" cy="8" r="4" fill="#bbb" />
-                            <rect x="6" y="14" width="12" height="8" rx="4" fill="#bbb" />
-                        </svg>
+                        <img src={"https://image.pollinations.ai/prompt/" + prompt + "?width=50&height=50&seed=` + uuid + `&nologo=true"} alt="User icon" />
                     </div>
                     <div>
                         <div className="post-user-name">{userName}</div>
