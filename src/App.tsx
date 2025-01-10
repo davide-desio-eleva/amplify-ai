@@ -13,7 +13,7 @@ export default function App() {
     const [chatLog, setChatLog] = useState('');
     const [cringeLevel, setCringeLevel] = useState(50);
     const [argument, setArgument] = useState('');
-    const [userName, setUserName] = useState('Tu'); // User name state
+    const [userName, setUserName] = useState('Il tuo nome'); // User name state
     const [userTitle, setUserTitle] = useState('Il tuo titolo di lavoro'); // User title state
     const [postOpacity, setPostOpacity] = useState(0); // Opacity state
     const currentYear = new Date().getFullYear();
@@ -121,14 +121,13 @@ export default function App() {
                             <button onClick={() => setArgument("eliminare whatsapp web dalle 9 alle 18")} >eliminare whatsapp web dalle 9 alle 18</button>
                         </div>
                         <div className="argument-container">
-                            <label>Il tuo nome:</label>
-                            <Input value={userName} onChange={handleUserNameChange}></Input>
-                            <label>Il tuo titolo di lavoro:</label>
-                            <Input value={userTitle} onChange={handleUserTitleChange}></Input>
+                            <Input placeholder="Il tuo nome" value={userName} onChange={handleUserNameChange}></Input>
+                            <Input placeholder="Il tuo titolo di lavoro" value={userTitle} onChange={handleUserTitleChange}></Input>
                             <TextAreaField
                                 value={argument}
                                 onChange={handleArgumentChange}
-                                label="Scrivi il tuo argomento qui sotto:"
+                                placeholder="Scrivi qui il tuo argomento"
+                                label=""
                             />
                         </div>
                     </div>

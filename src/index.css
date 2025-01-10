@@ -206,8 +206,8 @@ div.bullets button:nth-child(9) {
   margin-top: 20px;
 }
 
-.argument-container label{
-  color: white;
+.argument-container input{
+  margin-bottom:5px;
 }
 
 .range-container {
@@ -498,6 +498,10 @@ div.bullets button:nth-child(9) {
 .amplify-input{
   background:white !important;
   font-family: "Segoe UI', Tahoma, Geneva, Verdana, sans-serif", serif !important;
+}
+
+.amplify-textareafield label{
+  display:none;
 }
 
 .amplify-textarea{
