@@ -362,6 +362,15 @@ div.bullets button:nth-child(9) {
   color: white !important;
 }
 
+.footer .warning{
+  color: black !important;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  width: 200px;
+  margin: 10px auto;
+}
+
 .spinner-container{
   text-align: center;
   padding: 20px;
