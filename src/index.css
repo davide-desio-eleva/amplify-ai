@@ -433,9 +433,8 @@ div.bullets button:nth-child(9) {
 }
 
 .header{
-  position:absolute;
-  top:2px;
-  right:2px;
+  padding: 3px;
+  padding-top: 10px;
 }
 
 .footer{
@@ -453,11 +452,10 @@ div.bullets button:nth-child(9) {
 }
 
 .footer .warning{
-  color: black !important;
-  border: 1px solid black;
   border-radius: 5px;
   padding: 5px;
   width: 200px;
+  font-size: 10px;
   margin: 10px auto;
 }
 
@@ -536,4 +534,8 @@ div.bullets button:nth-child(9) {
 
 [data-amplify-container]{
   width: 100% !important;
+}
+
+[data-amplify-router]{
+  margin-top: 15px;
 }
