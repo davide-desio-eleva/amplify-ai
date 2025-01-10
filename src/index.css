@@ -10,7 +10,7 @@ body {
 /* Create a starry effect */
 body::before {
   content: '';
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -24,7 +24,7 @@ body::before {
 /* Add twinkling stars effect */
 body::after {
   content: '';
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -34,6 +34,7 @@ body::after {
   background-position: center;
   animation: twinkling 5s infinite alternate;
   pointer-events: none;
+  z-index:-1;
 }
 
 @keyframes twinkling {
