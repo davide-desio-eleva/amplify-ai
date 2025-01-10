@@ -53,7 +53,7 @@ const Loader = ({ cringeLevel }: { cringeLevel: number }) => {
     }, [selectedMessages.length]);
 
     return (
-        <div className="spinner-container">
+        <div className="spinner-container hint">
             <div className="spinner-title">{selectedMessages[messageIndex]}</div>
             <div className="spinner-subtitle">Stiamo generando i tuoi buoni propositi...</div>
             <div className="spinner">

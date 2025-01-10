@@ -152,8 +152,54 @@ div.bullets button:nth-child(9) {
   background-color: #b93a2f; /* Rosso scuro con una punta di arancio */
 }
 
-.hint{
-  color:white;
+.hint {
+  font-family: 'Poppins', sans-serif; /* Un font moderno e leggibile */
+  font-size: 14px; /* Dimensione leggibile */
+  background: linear-gradient(135deg, #e68a00, #d15c00, #b93a2f);
+  background-size: 300% 300%; /* Effetto movimento */
+  color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 87, 34, 0.5);
+  animation: glow 6s infinite alternate; /* Animazione che simula un bagliore magico */
+  text-align: center;
+  line-height: 1.6;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Aggiunta di un effetto scintillante */
+.hint::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+  animation: sparkle 4s infinite;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* Animazione del bagliore */
+@keyframes glow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Effetto scintillante */
+@keyframes sparkle {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 
 .argument-container{
@@ -421,7 +467,6 @@ div.bullets button:nth-child(9) {
 
 .spinner-subtitle{
   font-size: 14px;
-  color: #888;
   margin-bottom: 20px;
 }
 

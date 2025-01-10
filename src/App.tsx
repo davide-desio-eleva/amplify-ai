@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Card, Input} from "@aws-amplify/ui-react";
+import {Input} from "@aws-amplify/ui-react";
 import { client } from "./client";
 import Loader from "./components/Loader";
 import Header from "./components/Header";
@@ -99,17 +99,15 @@ export default function App() {
             <Header />
 
             {loading && (
-                <Card>
-                    <Loader cringeLevel={cringeLevel} />
-                </Card>
+                <Loader cringeLevel={cringeLevel} />
             )}
 
             {controlsVisible && (
                 <div id="controls">
                     <div>
                         <div className="hint">
-                            Ciao! Sono il tuo assistente virtuale Eleva per i buoni propositi del {currentYear}:
-                            forniscimi un argomento e io farò il resto con un po' di magia. Ad esempio:
+                            Ciao! Sono il generatore di buoni propositi Eleva, il tuo assistente virtuale pronto a rendere i tuoi buoni propositi del {currentYear} ancora più straordinari!
+                            Dimmi un argomento, e con un pizzico di magia e tanta ispirazione, farò il resto. Ad esempio:
                         </div>
                         <div className="bullets">
                             <button onClick={() => setArgument("non fare più di 3 call al giorno")} >non fare più di 3 call al giorno</button>
