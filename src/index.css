@@ -300,7 +300,7 @@ div.bullets button:nth-child(9) {
  .button-53 {
    position:absolute;
    top:0;
-   right:0;
+   right:-25px;
    background-color: #d64942;
    border: 0 solid #E5E7EB;
    box-sizing: border-box;
@@ -344,8 +344,8 @@ div.bullets button:nth-child(9) {
 
 .header{
   position:absolute;
-  top:15px;
-  right:15px;
+  top:2px;
+  right:2px;
 }
 
 .footer{
