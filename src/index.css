@@ -83,25 +83,102 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+div.bullets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 12px; /* Spaziatura tra i bottoni */
+}
+
+div.bullets button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: calc(33.33% - 10px); /* 3 bottoni per riga con gap */
+  background-color: #f5f5f5; /* Colore di sfondo di base */
+  border: 2px solid #ccc; /* Bordo per assomigliare a un bullet */
+  border-radius: 20px; /* Forma arrotondata per il bullet */
+  cursor: pointer;
+  font-size: 10px; /* Impostato a 10px */
+  white-space: normal; /* Permette al testo di andare su più righe */
+  overflow: visible; /* Assicura che il testo non venga nascosto */
+  text-overflow: unset; /* Disabilita il troncamento del testo */
+  transition: all 0.3s ease;
+  word-wrap: break-word; /* In caso di parole lunghe, vanno a capo */
+}
+div.bullets button:hover {
+  background-color: #ddd; /* Cambia colore al passaggio del mouse */
+  border-color: #999;
+}
+
+div.bullets button:focus {
+  outline: none;
+  box-shadow: 0 0 5px #666;
+}
+
+/* Colori differenti per ogni bottone */
+div.bullets button:nth-child(1) {
+  background-color: #d64942; /* Colore principale (Rosso) */
+}
+
+div.bullets button:nth-child(2) {
+  background-color: #f07c6e; /* Rosso chiaro */
+}
+
+div.bullets button:nth-child(3) {
+  background-color: #9b2e2a; /* Rosso scuro */
+}
+
+div.bullets button:nth-child(4) {
+  background-color: #7a1c17; /* Rosso molto scuro */
+}
+
+div.bullets button:nth-child(5) {
+  background-color: #f08556; /* Rosso-arancione */
+}
+
+div.bullets button:nth-child(6) {
+  background-color: #f57c00; /* Arancione */
+}
+
+div.bullets button:nth-child(7) {
+  background-color: #e68a00; /* Giallo ocra */
+}
+
+div.bullets button:nth-child(8) {
+  background-color: #d15c00; /* Arancione scuro */
+}
+
+div.bullets button:nth-child(9) {
+  background-color: #b93a2f; /* Rosso scuro con una punta di arancio */
+}
+
+.hint{
+  color:white;
+}
+
+.argument-container{
+  margin-top: 20px;
+}
+
+.argument-container label{
+  color: white;
+}
+
 .range-container {
   font-family: "Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
   width: 100%;
   text-align: center;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #f9f9f9;
   padding: 10px;
   margin-top: 20px;
 }
 .range-container label{
-  color: #d64942;
+  color: white;
 }
 .range-container div{
   display: flex;
   justify-content: space-between;
   font-size: 14px;
-  color: #d64942;
+  color: white;
 }
 
 #cringeRange{
@@ -120,7 +197,7 @@ button:focus-visible {
   -webkit-appearance: none;
   width: 20px;
   height: 20px;
-  background: #d64942;
+  background: white;
   border-radius: 50%;
   cursor: pointer;
   position:relative;
@@ -179,12 +256,19 @@ button:focus-visible {
   marginBottom: 15px;
 }
 
-.post-user-info img{
-  border-radius: 50%;
+.post-user-icon {
   width: 50px;
+  padding: 5px;
   height: 50px;
+  background-color: #ccc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   margin-right: 10px;
 }
+
 
 .post-user-name{
   font-weight: bold;
@@ -213,6 +297,51 @@ button:focus-visible {
   color: #666;
 }
 
+ .button-53 {
+   position:absolute;
+   top:0;
+   right:0;
+   background-color: #d64942;
+   border: 0 solid #E5E7EB;
+   box-sizing: border-box;
+   color: #000000;
+   display: flex;
+   font-family: ui-sans-serif, system-ui, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+   font-size: 11px;
+   font-weight: 700;
+   justify-content: center;
+   padding: 10px;
+   text-align: center;
+   text-decoration: none #000000 solid;
+   text-decoration-thickness: auto;
+   width: 100px;
+   max-width: 460px;
+   cursor: pointer;
+   transform: rotate(-2deg);
+   user-select: none;
+   -webkit-user-select: none;
+   touch-action: manipulation;
+ }
+
+.button-53:focus {
+  outline: 0;
+}
+
+.button-53:after {
+  content: '';
+  position: absolute;
+  border: 1px solid #000000;
+  bottom: 4px;
+  left: 4px;
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+}
+
+.button-53:hover:after {
+  bottom: 2px;
+  left: 2px;
+}
+
 .header{
   position:absolute;
   top:15px;
@@ -225,6 +354,8 @@ button:focus-visible {
   width: 100%;
   left: 0;
   bottom: 0;
+  margin: 10px 0;
+  font-size: 11px;
 }
 
 .footer a{

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card } from "@aws-amplify/ui-react";
+import {Card, Input} from "@aws-amplify/ui-react";
 import { client } from "./client";
 import Loader from "./components/Loader";
 import Header from "./components/Header";
@@ -13,7 +13,10 @@ export default function App() {
     const [chatLog, setChatLog] = useState('');
     const [cringeLevel, setCringeLevel] = useState(50);
     const [argument, setArgument] = useState('');
+    const [userName, setUserName] = useState('Tu'); // User name state
+    const [userTitle, setUserTitle] = useState('Il tuo titolo di lavoro'); // User title state
     const [postOpacity, setPostOpacity] = useState(0); // Opacity state
+    const currentYear = new Date().getFullYear();
 
     const handleRangeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = Number(event.target.value);
@@ -24,10 +27,19 @@ export default function App() {
         setArgument(event.target.value);
     };
 
+    const handleUserNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setUserName(event.target.value);
+    };
+
+    const handleUserTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setUserTitle(event.target.value);
+    };
+
     const handleBack = async () => {
         setPostOpacity(0);
         setControlsVisible(true);
         setLoading(false);
+        setChatLog('')
     }
 
     const handleClick = async () => {
@@ -74,7 +86,7 @@ export default function App() {
 
                 // 3. Send a message to the conversation
                 await chat.sendMessage(
-                    `Utilizza l'argomento ${argument} ed un livello di cringe pari a ${cringeLevel} su 100`
+                    `Argomento: "${argument}". Cringe level: ${cringeLevel} su 100`
                 );
             }
         } catch (error) {
@@ -94,31 +106,34 @@ export default function App() {
 
             {controlsVisible && (
                 <div id="controls">
-                    <Card variation="outlined">
-                        <div>
-                            Ciao! Sono il tuo assistente virtuale Eleva per i buoni propositi del 2025:
+                    <div>
+                        <div className="hint">
+                            Ciao! Sono il tuo assistente virtuale Eleva per i buoni propositi del {currentYear}:
                             forniscimi un argomento e io farò il resto con un po' di magia. Ad esempio:
                         </div>
-                        <ul style={{ fontSize: "11px" }}>
-                            <li>non fare più di 3 call al giorno</li>
-                            <li>non far salire il cane sul divano</li>
-                            <li>scrivere un libro</li>
-                            <li>partecipare come speaker a un ted talk</li>
-                            <li>imparare a ballare la polka</li>
-                            <li>tornare a giocare a calcetto preservando i menischi</li>
-                            <li>usare 🐙meno 🐙 emoticon 🐙</li>
-                            <li>comprare camicie che non siano a quadri</li>
-                            <li>eliminare whatsapp web dalle 9 alle 18</li>
-                            <li>fare sport con i colleghi il giorno dopo gli offsite</li>
-                        </ul>
+                        <div className="bullets">
+                            <button onClick={() => setArgument("non fare più di 3 call al giorno")} >non fare più di 3 call al giorno</button>
+                            <button onClick={() => setArgument("non far salire il cane sul divanoo")} >non far salire il cane sul divano</button>
+                            <button onClick={() => setArgument("scrivere un libro")} >scrivere un libro</button>
+                            <button onClick={() => setArgument("partecipare come speaker a un ted talk")} >partecipare come speaker a un ted talk</button>
+                            <button onClick={() => setArgument("imparare a ballare la polka")}>imparare a ballare la polka</button>
+                            <button onClick={() => setArgument("tornare a giocare a calcetto preservando i menischi")}>tornare a giocare a calcetto preservando i menischi</button>
+                            <button onClick={() => setArgument("usare 🐙meno 🐙 emoticon 🐙")}>usare 🐙meno 🐙 emoticon 🐙</button>
+                            <button onClick={() => setArgument("comprare camicie che non siano a quadri")} >comprare camicie che non siano a quadri</button>
+                            <button onClick={() => setArgument("eliminare whatsapp web dalle 9 alle 18")} >eliminare whatsapp web dalle 9 alle 18</button>
+                        </div>
                         <div className="argument-container">
+                            <label>Il tuo nome:</label>
+                            <Input value={userName} onChange={handleUserNameChange}></Input>
+                            <label>Il tuo titolo di lavoro:</label>
+                            <Input value={userTitle} onChange={handleUserTitleChange}></Input>
                             <TextAreaField
                                 value={argument}
                                 onChange={handleArgumentChange}
                                 label="Scrivi il tuo argomento qui sotto:"
                             />
                         </div>
-                    </Card>
+                    </div>
 
                     <div className="range-container">
                         <label>Cringe Meter: {cringeLevel}</label>
@@ -144,7 +159,7 @@ export default function App() {
             { postOpacity>0 &&
                 <>
                     <div style={{ opacity: postOpacity, transition: "opacity 0.5s ease-in-out" }}>
-                        <Post chatLog={chatLog} />
+                        <Post chatLog={chatLog} userName={userName} userTitle={userTitle} />
                     </div>
                     <button id="back" onClick={handleBack}>
                         Genera di nuovo
