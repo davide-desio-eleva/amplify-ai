@@ -28,7 +28,7 @@ const Post = ({
         }
     };
 
-    const prompt = "Una bella immagine per LinkedIn di nome " + userName + " e con rulo " + userTitle;
+    const prompt = "Una bella immagine per LinkedIn di nome " + userName + " e con ruolo " + userTitle;
 
     return (
         <div id="post-container" style={{ position: "relative" }}>
