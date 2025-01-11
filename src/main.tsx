@@ -12,6 +12,18 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 I18n.putVocabularies(translations);
 I18n.setLanguage('it');
+I18n.putVocabulariesForLanguage('it', {
+    'Sign In': 'Accedi', // Tab header
+    'Sign in': 'Accedi', // Button label
+    'Sign in to your account': 'Benvenuto',
+    Username: 'Inserisci la tua email', // Username label
+    Password: 'La tua password', // Password label
+    'Enter your email': 'Inserisci la tua email',
+    'Enter your Password':'Inserisci la tua password',
+    'Forgot your password?': 'Password dimenticata?',
+    'Reset Password': 'Cambia password',
+    'Please confirm your Password': 'Conferma la tua password'
+});
 
 Amplify.configure(outputs);
 
