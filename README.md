@@ -27,10 +27,6 @@ npm install
 ```
 
 Next, configure the Amplify CLI with your AWS account following those [instructions](https://docs.amplify.aws/react/start/account-setup/).
-Then, initialize the Amplify project:
-
-```bash
-
 Start a sandbox environment by running:
 
 ```bash
