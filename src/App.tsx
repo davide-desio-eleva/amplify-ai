@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import {Input} from "@aws-amplify/ui-react";
 import { client } from "./client";
 import Loader from "./components/Loader";
@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Post from "./components/Post";
 import { TextAreaField } from "@aws-amplify/ui-react";
+import { getCurrentUser } from 'aws-amplify/auth';
 
 export default function App() {
     const [controlsVisible, setControlsVisible] = useState(true);
@@ -17,6 +18,25 @@ export default function App() {
     const [userTitle, setUserTitle] = useState('Il tuo titolo di lavoro'); // User title state
     const [postOpacity, setPostOpacity] = useState(0); // Opacity state
     const currentYear = new Date().getFullYear();
+    const [isLogged, setLogged] = useState(false);
+    const [loginId, setLoginId] = useState('');
+
+    useEffect(() => {
+        const fetchUserDetails = async () => {
+            try {
+                const { signInDetails } = await getCurrentUser();
+                if(signInDetails && signInDetails.loginId){
+                    setLoginId(signInDetails.loginId);
+                }
+                setLogged(true);
+            } catch (error) {
+                setLoginId('');
+                setLogged(false);
+            }
+        };
+
+        fetchUserDetails();
+    }, []);
 
     const handleRangeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = Number(event.target.value);
@@ -96,7 +116,7 @@ export default function App() {
 
     return (
         <>
-            <Header />
+            <Header isLogged={isLogged} loginId={loginId}/>
 
             {loading && (
                 <Loader cringeLevel={cringeLevel} />
@@ -168,7 +188,7 @@ export default function App() {
                 </>
             }
 
-            <Footer />
+            <Footer isLogged={isLogged}/>
         </>
     );
 }

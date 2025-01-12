@@ -1,29 +1,14 @@
 import {View} from "@aws-amplify/ui-react";
 import {signOut} from "@aws-amplify/auth";
-import { getCurrentUser } from 'aws-amplify/auth';
-import {useEffect, useState} from "react";
 
-const Header = () => {
 
-    const [isLogged, setLogged] = useState(false);
-    const [loginId, setLoginId] = useState('');
-
-    useEffect(() => {
-        const fetchUserDetails = async () => {
-            try {
-                const { signInDetails } = await getCurrentUser();
-                if(signInDetails && signInDetails.loginId){
-                    setLoginId(signInDetails.loginId);
-                }
-                setLogged(true);
-            } catch (error) {
-                setLoginId('');
-                setLogged(false);
-            }
-        };
-
-        fetchUserDetails();
-    }, []);
+const Header = ({
+                    isLogged,
+                    loginId,
+                }: {
+    isLogged: boolean;
+    loginId: string;
+}) => {
 
     const handleSignOut = async () => {
         await signOut()
