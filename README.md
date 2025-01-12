@@ -13,6 +13,12 @@ This template equips you with a foundational React application integrated with A
 - **AI**: Integrated with Amazon Bedrock.
 - **Database**: Real-time database powered by Amazon DynamoDB.
 
+## Branches
+There are two branches in this repository:
+- **main**: The main branch contains the starter template with a "Conversational AI" UI implemented.
+- **develop**: The develop branch contains the complete project with all the features implemented and a "Geneative AI" UI implemented.
+
+You can read about the evolution of the idea in this post series [this post series on dev.to](https://dev.to/ddesio/build-an-ai-powered-new-years-resolutions-suggester-ridiculously-fast-with-amplify-ai-kit-4393).
 ## Running the project
 To get started, clone the repository and install the dependencies:
 
