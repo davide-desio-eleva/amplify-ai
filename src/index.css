@@ -437,6 +437,24 @@ div.bullets button:nth-child(9) {
   padding-top: 10px;
 }
 
+.header #sign-out{
+  position:absolute;
+  right: 0px;
+  width: 100px;
+  border-radius: 15px 0px;
+}
+
+.header #user-name{
+  background: black;
+  position:absolute;
+  top: 0px;
+  left: 0px;
+  width: auto;
+  border-radius: 15px 0px;
+  font-size: 12px;
+  padding: 5px 10px;
+}
+
 .footer{
   color: white !important;
   text-align: center;
