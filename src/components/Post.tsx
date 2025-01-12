@@ -72,6 +72,8 @@ const Post = ({
                 </div>
                 <div className="post-content">
                     <Markdown rehypePlugins={[rehypeHighlight]}>{chatLog}</Markdown>
+                    <br/>
+                    Generato con il suggeritore di buoni propositi Eleva.
                 </div>
                 <div className="post-engagement">
                     <div>👍 256 • 💬 48 • 🔄 12</div>
