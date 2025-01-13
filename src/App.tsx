@@ -131,7 +131,7 @@ export default function App() {
                         </div>
                         <div className="bullets">
                             <button onClick={() => setArgument("non fare più di 3 call al giorno")} >non fare più di 3 call al giorno</button>
-                            <button onClick={() => setArgument("non far salire il cane sul divanoo")} >non far salire il cane sul divano</button>
+                            <button onClick={() => setArgument("non far salire il cane sul divano")} >non far salire il cane sul divano</button>
                             <button onClick={() => setArgument("scrivere un libro")} >scrivere un libro</button>
                             <button onClick={() => setArgument("partecipare come speaker a un ted talk")} >partecipare come speaker a un ted talk</button>
                             <button onClick={() => setArgument("imparare a ballare la polka")}>imparare a ballare la polka</button>
