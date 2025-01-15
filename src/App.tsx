@@ -68,19 +68,38 @@ export default function App() {
         setLoading(true);
 
         try {
-            // 1. Create a conversation
+            // Create a conversation
             const { data: chat } = await client.conversations.chat.create();
 
             if (chat) {
-                // 2. Subscribe to assistant responses
+                // Store event fragments
+                const eventFragments = new Map();
+
                 chat.onStreamEvent({
                     next: (event) => {
-                        // Handle assistant response stream events
+                        // Check for text content
                         if (event.text) {
-                            console.log("Acquiring text: " + event.text);
-                            setChatLog((prev) => `${prev}${event.text}`);
+                            const { contentBlockIndex, contentBlockDeltaIndex, text } = event;
 
-                            // Animate opacity of the Post component
+                            // Create a unique key for each fragment
+                            const fragmentKey = `${contentBlockIndex}-${contentBlockDeltaIndex}`;
+
+                            // Store text in the map
+                            eventFragments.set(fragmentKey, { contentBlockIndex, contentBlockDeltaIndex, text });
+
+                            // Extract and sort events by block and delta indices
+                            const sortedText = Array.from(eventFragments.values())
+                                .sort((a, b) =>
+                                    a.contentBlockIndex - b.contentBlockIndex ||
+                                    a.contentBlockDeltaIndex - b.contentBlockDeltaIndex
+                                )
+                                .map(fragment => fragment.text)
+                                .join("");
+
+                            // Update the chat log
+                            setChatLog(sortedText);
+
+                            // Animate opacity for Post component
                             let opacity = 0;
                             const interval = setInterval(() => {
                                 opacity += 0.1;
@@ -90,8 +109,9 @@ export default function App() {
                                 }
                                 setPostOpacity(opacity);
                             }, 50); // Update every 50ms
-
                         }
+
+                        // Handle content block completion
                         if (event.contentBlockDoneAtIndex) {
                             setLoading(false);
                         }
@@ -104,7 +124,7 @@ export default function App() {
                     },
                 });
 
-                // 3. Send a message to the conversation
+                // Send a message to the conversation
                 await chat.sendMessage(
                     `Argomento: "${argument}". Cringe level: ${cringeLevel} su 100`
                 );
@@ -112,6 +132,7 @@ export default function App() {
         } catch (error) {
             console.error("An error occurred:", error);
         }
+
     };
 
     return (
