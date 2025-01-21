@@ -5,7 +5,7 @@ import { deleteUser } from 'aws-amplify/auth';
 const Footer = ({
                     isLogged
                 }: {
-    isLogged: boolean;
+    isLogged?: boolean;
 }) => {
     const [showModal, setShowModal] = useState(false);
 

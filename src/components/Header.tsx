@@ -6,8 +6,8 @@ const Header = ({
                     isLogged,
                     loginId,
                 }: {
-    isLogged: boolean;
-    loginId: string;
+    isLogged?: boolean;
+    loginId?: string;
 }) => {
 
     const handleSignOut = async () => {
